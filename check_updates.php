@@ -72,7 +72,7 @@ foreach($json as $item) {
 file_put_contents("log.json", json_encode($log));
 
 $message = "*CoronaVirus* - ".implode(", ", array_keys($new_updates))."\n\n";
-foreach($new_updates as $CountryName => $item) {
+foreach($new_updates as $country_name => $item) {
   
   if(in_array("new_conf", $item)) {
     $list[] = $item["new_conf"]." more people infected";
@@ -86,7 +86,7 @@ foreach($new_updates as $CountryName => $item) {
     $list[] = $item["new_recovered"]." people recovered";
   }
   
-  $message .= $CountryName.", ".implode(", ", $list).".";
+  $message .= $country_name.", ".implode(", ", $list).".";
 }
 
 
