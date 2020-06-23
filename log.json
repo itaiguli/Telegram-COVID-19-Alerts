@@ -1,1 +1,4 @@
-["Israel":{"conf":10, "death":1, "recovered":2}]
+{
+  "Israel":{"conf":10, "death":1, "recovered":2},
+  "France":{"conf":22, "death":3, "recovered":5}
+}
