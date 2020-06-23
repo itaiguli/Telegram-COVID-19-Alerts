@@ -28,14 +28,14 @@ foreach($table_tr as $row) {
         
     $conf = intval($cols[2]->textContent);
     $deaths =  intval($cols[4]->textContent);
-    $Recovered = intval($cols[6]->textContent);
+    $recovered = intval($cols[6]->textContent);
         
     $todaySick = intval($cols[3]->textContent);
     $hardSick = intval($cols[9]->textContent);
     $todayDeath = intval($cols[5]->textContent);
     $totalChecks = intval($cols[12]->textContent);
                 
-    $data = array("Country" => $name, "Confirmed" => $conf, "Deaths" => $deaths, "Recovered" => $Recovered, "todaySick"=>$todaySick, "hardSick"=>$hardSick, "todayDeath"=>$todayDeath, "totalChecks"=>$totalChecks, "nowSick"=>($conf-$Recovered-$deaths));
+    $data = array("Country" => $name, "Confirmed" => $conf, "Deaths" => $deaths, "Recovered" => $recovered, "todaySick"=>$todaySick, "hardSick"=>$hardSick, "todayDeath"=>$todayDeath, "totalChecks"=>$totalChecks, "nowSick"=>($conf-$Recovered-$deaths));
         
     $bad_list = ["World", "North America", "Europe", "Asia", "South America", "Oceania", "Africa", "Total:", ""];
     if(!in_array($name, $bad_list)){
@@ -43,7 +43,7 @@ foreach($table_tr as $row) {
     }
 }
 
-$log = json_decode(file_get_contents("log.php"), true); // "Israel":{"conf":10, "death":1, "recovered":2}
+$log = json_decode(file_get_contents("log.json"), true); // "Israel":{"conf":10, "death":1, "recovered":2}
 $new_updates = [];
 foreach($json as $item) {
 
@@ -69,7 +69,7 @@ foreach($json as $item) {
 }
 
 // save log file
-file_put_contents("log.php", json_encode($log));
+file_put_contents("log.json", json_encode($log));
 
 $message = "*CoronaVirus* - ".implode(", ", array_keys($new_updates))."\n\n";
 foreach($new_updates as $CountryName => $item) {
