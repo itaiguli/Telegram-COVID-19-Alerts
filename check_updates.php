@@ -1,3 +1,4 @@
+// Written by Itai G
 <?php
 $url = "https://www.worldometers.info/coronavirus/";
 $ch = curl_init();
